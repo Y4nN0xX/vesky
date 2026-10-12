@@ -3,63 +3,134 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; font-src 'self'; img-src 'self' blob: data:; media-src 'self' blob:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' blob: data:; media-src 'self' blob:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
-<meta name="theme-color" content="#efede6">
+<meta name="theme-color" content="#0c0a07">
 <meta name="description" content="Masque les visages d'une vidéo ou d'une photo avec un carré plein, directement sur ton téléphone. Rien n'est envoyé sur internet.">
-<title>vesky · masque les visages avant de poster</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Crect%20width=%2232%22%20height=%2232%22%20fill=%22%23efede6%22/%3E%3Crect%20x=%226%22%20y=%226%22%20width=%2220%22%20height=%2220%22%20fill=%22%230b0b0a%22/%3E%3C/svg%3E">
+<title>skred fuck skyrock · masque les visages avant de poster</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Crect%20width=%2232%22%20height=%2232%22%20fill=%22%230c0a07%22/%3E%3Crect%20x=%226%22%20y=%226%22%20width=%2220%22%20height=%2220%22%20fill=%22%23c9972a%22/%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-180.png">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="vesky">
-<link rel="stylesheet" href="vendor/fonts/fonts.css">
-<link rel="stylesheet" href="style.css">
+<meta name="apple-mobile-web-app-title" content="skred fuck skyrock">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--gold:#c9972a;--gold-light:#e8b84b;--gold-dim:#7a5c18;--gold-faint:rgba(201,151,42,0.05);--bg:#0c0a07;--border:rgba(201,151,42,0.2);--border-h:rgba(201,151,42,0.55);--text:#d4c49a;--text-dim:rgba(212,196,154,0.4);--text-muted:rgba(212,196,154,0.65);--red-faint:rgba(192,57,43,0.08)}
+@keyframes fadeSlideUp{from{opacity:0;transform:translate3d(0,8px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+html,body{background-color:var(--bg)!important;color:var(--text)!important;font-family:'JetBrains Mono',monospace!important;min-height:100vh;width:100%;overflow-x:hidden}
+body{display:flex;justify-content:center;align-items:center;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E")}
+.screen{width:100%;max-width:440px;padding:24px 20px;animation:fadeSlideUp .2s cubic-bezier(0.16,1,0.3,1) both;display:flex;flex-direction:column;min-height:100vh;box-sizing:border-box;background:transparent!important;will-change:transform,opacity}
+.screen[hidden]{display:none!important}
+header.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:12px;position:relative;border-bottom:1px solid var(--border)}
+header.top::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
+.brand{font-family:'Cinzel',serif!important;font-size:12px;font-weight:700;color:var(--gold-light)!important;letter-spacing:4px;text-transform:uppercase}
+button,.cta,.install,.square.pick{touch-action:manipulation;user-select:none;-webkit-user-select:none;font-family:'JetBrains Mono',monospace!important}
+.install,.link,.btn-exec,button.close,button.go{background:rgba(201,151,42,0.1)!important;border:1px solid rgba(201,151,42,0.3)!important;color:var(--gold-light)!important;font-size:9px;font-weight:500;letter-spacing:3px;padding:10px 14px;cursor:pointer;border-radius:2px;text-transform:uppercase;transition:background .1s ease,transform .08s ease;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.install:active,.link:active,.btn-exec:active,button.close:active,button.go:active,.cta:active{transform:scale(0.96);background:rgba(201,151,42,0.25)!important}
+.link{background:transparent!important;border-color:var(--border)!important;color:var(--text-dim)!important}
+.middle{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:24px}
+.title,.big{font-family:'Cinzel',serif!important;color:var(--gold-light)!important;font-size:26px;font-weight:700;letter-spacing:4px;line-height:1.3;text-transform:uppercase}
+.big{font-size:38px}
+.square.pick{width:220px;height:220px;border:1px dashed var(--border-h)!important;background:var(--gold-faint)!important;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border-radius:3px;transition:background .1s ease,transform .1s ease;will-change:transform}
+.square.pick:active{transform:scale(0.97);border-color:var(--gold)!important;background:rgba(201,151,42,0.1)!important}
+.square.pick input[type="file"]{display:none}
+.plus{font-size:38px;color:var(--gold)!important;font-weight:300;margin-bottom:6px}
+.pickText{font-size:10px;letter-spacing:2px;color:var(--text-muted)!important;text-transform:uppercase}
+.square.frame{width:100%;max-width:300px;height:220px;border:1px solid var(--border)!important;background:rgba(0,0,0,0.6)!important;position:relative;border-radius:3px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.square.frame.dark{background:#000!important}
+.square.frame video,.square.frame img{width:100%;height:100%;object-fit:contain}
+.square.frame .fill{position:absolute;bottom:0;left:0;right:0;background:rgba(201,151,42,0.18);border-top:1px solid var(--gold);will-change:height,width}
+.tag{position:absolute;top:8px;left:8px;font-size:8px;letter-spacing:2px;padding:3px 6px;background:rgba(0,0,0,0.8);border:1px solid var(--border);color:var(--gold)!important;text-transform:uppercase;z-index:2}
+.foot,.bottom{margin-top:24px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;font-size:9px;letter-spacing:1px;color:var(--text-dim)!important}
+.foot a,.links a{color:var(--gold-dim)!important;text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .15s ease}
+.foot a:hover,.links a:hover{color:var(--gold-light)!important}
+.fast{display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--text-muted)!important;font-size:10px}
+.fast input[type="checkbox"]{accent-color:var(--gold)}
+.note,.strong{font-size:10px;color:var(--text-muted)!important;line-height:1.4}
+.strong{color:var(--gold-light)!important;font-weight:500}
+.error{color:#d47070!important;font-size:10px;letter-spacing:1px;text-align:center;margin-top:10px;padding:8px;background:var(--red-faint)!important;border:1px solid rgba(192,57,43,0.3)!important;border-radius:2px}
+.sheetBack{position:fixed;inset:0;background:rgba(12,10,7,0.88);backdrop-filter:blur(6px);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.sheetBack[hidden]{display:none!important}
+.sheet{width:100%;max-width:360px;border:1px solid var(--border-h);border-radius:3px;background:#131007;padding:24px;display:flex;flex-direction:column;gap:16px}
+.sheet h2{font-family:'Cinzel',serif!important;font-size:16px;color:var(--gold-light)!important;letter-spacing:3px;text-transform:uppercase}
+.steps{list-style:none;display:flex;flex-direction:column;gap:8px}
+.steps li{display:flex;align-items:flex-start;gap:10px;font-size:11px;color:var(--text)!important;background:rgba(0,0,0,0.4);padding:8px 10px;border:1px solid var(--border);border-radius:2px}
+.steps li .n{font-family:'Cinzel',serif!important;font-weight:700;color:var(--gold)!important}
+.steps li svg{width:18px;height:18px;stroke:var(--gold);flex-shrink:0;margin-left:auto}
+#s-review{padding:16px 10px;max-width:800px}
+.banner{text-align:center;font-size:9px;letter-spacing:2px;color:var(--gold)!important;text-transform:uppercase;margin-bottom:10px;background:var(--gold-faint)!important;border:1px solid var(--border)!important;padding:6px;border-radius:2px}
+.stage{position:relative;width:100%;flex:1;min-height:280px;background:#050403;border:1px solid var(--border)!important;border-radius:3px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:12px;transform:translateZ(0)}
+.stage canvas#view{max-width:100%;max-height:50vh;display:block;touch-action:none}
+.maskBar{position:absolute;bottom:12px;display:flex;gap:6px;background:rgba(12,10,7,0.9);border:1px solid var(--border-h)!important;padding:4px;border-radius:3px;backdrop-filter:blur(4px);z-index:10}
+.maskBar button{background:transparent!important;border:1px solid var(--border)!important;color:var(--text)!important;font-size:11px;width:32px;height:32px;border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.maskBar button:active{transform:scale(0.9);background:rgba(201,151,42,0.2)!important}
+.deck{display:flex;flex-direction:column;gap:10px;background:rgba(18,14,8,0.6);border:1px solid var(--border)!important;padding:12px;border-radius:3px}
+.timeline{display:flex;align-items:center;gap:8px}
+.timeline .step{background:transparent!important;border:1px solid var(--border)!important;color:var(--gold)!important;font-size:14px;width:32px;height:32px;border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.timeline .step:active{transform:scale(0.9)}
+.track{flex:1;position:relative;height:24px;display:flex;align-items:center}
+.track canvas#tracks{position:absolute;width:100%;height:10px;top:7px;pointer-events:none}
+.track input[type="range"]{position:absolute;width:100%;margin:0;accent-color:var(--gold);cursor:pointer;height:24px;touch-action:manipulation}
+.row{display:flex;gap:8px;align-items:center}
+.ctl{background:rgba(201,151,42,0.1)!important;border:1px solid var(--border)!important;color:var(--gold-light)!important;font-size:11px;padding:8px 12px;border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.ctl:active{transform:scale(0.95);background:rgba(201,151,42,0.2)!important}
+.ctl .sq{width:8px;height:8px;background:var(--gold);display:inline-block}
+button.go,a.cta{flex:1;background:rgba(201,151,42,0.2)!important;border:1px solid var(--gold)!important;color:var(--gold-light)!important;font-family:'Cinzel',serif!important;font-weight:700;font-size:12px;letter-spacing:2px;padding:10px 16px;text-align:center;border-radius:2px;cursor:pointer;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+button.go:active,a.cta:active{transform:scale(0.97);background:rgba(201,151,42,0.4)!important}
+.links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+video#src{display:none}
+</style>
 </head>
 <body>
 
-<!-- Accueil -->
+
 <section id="s-home" class="screen paper">
-  <header class="top"><span class="brand">vesky</span><button class="install" id="install" type="button" hidden>Installer l'app</button></header>
+  <header class="top"><span class="brand">skred fuck skyrock</span><button class="install" id="install" type="button" hidden>Installer l'app</button></header>
   <div class="middle">
     <h1 class="title">Masque<br>les visages.</h1>
     <label class="square pick" id="pickLabel" aria-disabled="true">
       <input type="file" id="file" accept="video/*,image/*" disabled>
       <span class="plus" aria-hidden="true">+</span>
-      <span class="pickText" id="pickText">Chargement…</span>
+      <span class="pickText" id="pickText">Chargement… prend jusqu’à 40 secondes.</span>
     </label>
   </div>
   <p id="homeError" class="error" hidden></p>
   <footer class="foot">
     <span id="footNote">Rien ne quitte ton téléphone.</span>
     <label class="fast"><input type="checkbox" id="fast"> Mode rapide (peut rater les très petits visages)</label>
-    <a href="verifier.html">Vérifier vesky</a>
-    <a href="https://github.com/Nctrn17/vesky">Code source</a>
+    <a href="verifier.html">Vérifier skred fuck skyrock</a>
     <a href="mentions.html">Mentions légales</a>
     <span id="version"></span>
   </footer>
 </section>
 
-<!-- Guide d'installation sur iPhone (Apple ne permet pas d'installer depuis un bouton) -->
+
 <div class="sheetBack" id="iosSheet" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="iosTitle">
     <h2 id="iosTitle">Installer<br>sur iPhone</h2>
-    <p class="note">Gratuit, sans App Store. vesky s'ouvrira comme une app, même sans réseau.</p>
+    <p class="note">Gratuit, sans App Store. skred fuck skyrock s'ouvrira comme une app, même sans réseau.</p>
     <ol class="steps">
-      <li id="iosInApp" hidden><span class="n">0</span><span class="t">Ouvre cette page dans Safari : menu ⋯ puis « Ouvrir dans Safari » ou « dans le navigateur »</span><span></span></li>
+      <li id="iosInApp" hidden><span class="n">0</span><span class="t">Ouvre cette page dans Safari : menu ⋯ puis « Ouvrir dans Safari » ou « dans le navigateur »</span><span></span></li>
       <li><span class="n">1</span><span class="t" id="iosShare">Touche le bouton Partager, en bas de Safari. Sur iOS 26, il est dans le menu ⋯ en bas à droite</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5v10h14V11h-1"/></svg></li>
-      <li><span class="n">2</span><span class="t">Choisis « Sur l'écran d'accueil »</span>
+      <li><span class="n">2</span><span class="t">Choisis « Sur l'écran d'accueil »</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg></li>
-      <li><span class="n">3</span><span class="t">Touche « Ajouter », en haut à droite</span><span></span></li>
+      <li><span class="n">3</span><span class="t">Touche « Ajouter », en haut à droite</span><span></span></li>
     </ol>
     <button class="close" id="iosClose" type="button">J'ai compris</button>
   </div>
 </div>
 
-<!-- Analyse -->
+
 <section id="s-scan" class="screen paper" hidden>
-  <header class="top"><span class="brand">vesky</span></header>
+  <header class="top"><span class="brand">skred fuck skyrock</span></header>
   <div class="middle">
     <span class="big" id="scanText">0%</span>
     <div class="square frame" id="scanFrame">
@@ -99,9 +170,8 @@
   </div>
 </section>
 
-<!-- Création -->
 <section id="s-export" class="screen paper" hidden>
-  <header class="top"><span class="brand">vesky</span></header>
+  <header class="top"><span class="brand">skred fuck skyrock</span></header>
   <div class="middle">
     <span class="big" id="exportPct">0%</span>
     <div class="square frame" id="exportFrame">
@@ -113,9 +183,8 @@
   <button class="link" id="exportCancel" type="button">Annuler</button>
 </section>
 
-<!-- Résultat -->
 <section id="s-done" class="screen paper" hidden>
-  <header class="top"><span class="brand">vesky</span></header>
+  <header class="top"><span class="brand">skred fuck skyrock</span></header>
   <div class="middle">
     <span class="big" id="doneTitle">Prête.</span>
     <div class="square frame dark">
@@ -140,6 +209,7 @@
 <p id="stats" class="note" hidden></p>
 
 <video id="src" class="src" playsinline muted preload="auto"></video>
-<script type="module" src="app.js"></script>
+
+<script type="module" src="app.js" defer></script>
 </body>
 </html>
