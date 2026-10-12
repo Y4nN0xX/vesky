@@ -3,23 +3,282 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
-<meta name="theme-color" content="#efede6">
-<meta name="description" content="Comment vérifier par toi-même que vesky n'envoie rien et ne garde aucune trace des visages.">
-<title>vesky · vérifier vesky</title>
-<link rel="stylesheet" href="vendor/fonts/fonts.css">
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#0c0a07">
+<meta name="description" content="Comment vérifier par toi-même que skred fuck skyrock n'envoie rien et ne garde aucune trace des visages.">
+<title>skred fuck skyrock · vérifier skred fuck skyrock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Reset & Optimisations de performance */
+*, *::before, *::after { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    -webkit-tap-highlight-color: transparent; 
+}
+
+:root {
+    --gold: #c9972a;
+    --gold-light: #e8b84b;
+    --gold-bright: #f0c55a;
+    --gold-dim: #7a5c18;
+    --gold-faint: rgba(201,151,42,0.05);
+    --bg: #0c0a07;
+    --border: rgba(201,151,42,0.2);
+    --border-h: rgba(201,151,42,0.55);
+    --text: #d4c49a;
+    --text-dim: rgba(212,196,154,0.4);
+    --text-muted: rgba(212,196,154,0.65);
+    --red: #c0392b;
+    --red-faint: rgba(192,57,43,0.08);
+}
+
+@keyframes fadeSlideUp { 
+    from { opacity: 0; transform: translate3d(0, 10px, 0); } 
+    to { opacity: 1; transform: translate3d(0, 0, 0); } 
+}
+
+html, body {
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}
+
+/* Structure globale */
+main.verif {
+    width: 100%;
+    max-width: 480px;
+    padding: 24px 20px 48px;
+    animation: fadeSlideUp .25s cubic-bezier(0.16, 1, 0.3, 1) both;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    box-sizing: border-box;
+    will-change: transform, opacity;
+}
+
+/* En-tête */
+header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+}
+header.top::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+}
+.brand {
+    font-family: 'Cinzel', serif !important;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold-light) !important;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+}
+.brand:active {
+    opacity: 0.7;
+}
+
+/* Titres */
+.title {
+    font-family: 'Cinzel', serif !important;
+    color: var(--gold-light) !important;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    line-height: 1.3;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+h2 {
+    font-family: 'Cinzel', serif !important;
+    color: var(--gold) !important;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 12px;
+    background: var(--gold);
+    border-radius: 1px;
+}
+
+/* Sections & Contenu */
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+p, li {
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.strong {
+    font-size: 11px;
+    color: var(--gold-light) !important;
+    line-height: 1.5;
+    background: var(--gold-faint);
+    border: 1px solid var(--border);
+    padding: 12px;
+    border-radius: 3px;
+}
+
+/* Listes de faits */
+ul.facts {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+ul.facts li {
+    background: rgba(18, 14, 8, 0.6);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    border-radius: 3px;
+}
+
+ul.facts li b {
+    color: var(--gold-light);
+    font-weight: 500;
+}
+
+ul.facts a {
+    color: var(--gold-bright);
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+code {
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--border);
+    color: var(--gold-light);
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-size: 10px;
+}
+
+/* Preuves (Cartes numérotées) */
+.proof {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(18, 14, 8, 0.6);
+    border: 1px solid var(--border);
+    padding: 12px;
+    border-radius: 3px;
+}
+
+.proof .n {
+    font-family: 'Cinzel', serif !important;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(201, 151, 42, 0.1);
+    border: 1px solid rgba(201, 151, 42, 0.3);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.proof h3 {
+    font-family: 'Cinzel', serif !important;
+    font-size: 12px;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+/* Section Limites */
+section.limits {
+    background: var(--gold-faint);
+    border: 1px solid var(--border-h);
+    padding: 14px;
+    border-radius: 3px;
+}
+
+/* Bouton d'action CTA */
+a.cta {
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    background: rgba(201, 151, 42, 0.2) !important;
+    border: 1px solid var(--gold) !important;
+    color: var(--gold-light) !important;
+    font-family: 'Cinzel', serif !important;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 3px;
+    padding: 12px 20px;
+    text-align: center;
+    border-radius: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: transform 0.08s ease, background 0.15s ease;
+    margin-top: 12px;
+}
+
+a.cta:active {
+    transform: scale(0.97);
+    background: rgba(201, 151, 42, 0.4) !important;
+}
+</style>
 </head>
-<body class="paper">
+<body>
 <main class="verif">
-  <header class="top"><a class="brand" href="./">vesky</a></header>
+  <header class="top"><a class="brand" href="./">skred fuck skyrock</a></header>
 
   <h1 class="title">Vérifie<br>par toi-<br>même.</h1>
   <p class="strong">Tu as raison de te méfier d'un outil qui touche à des vidéos de gens. Pas besoin de nous croire : tout se vérifie.</p>
 
   <section>
-    <h2>Ce que fait vesky</h2>
+    <h2>Ce que fait skred fuck skyrock</h2>
     <ul class="facts">
       <li><b>Sur ton téléphone.</b> La vidéo est analysée dans le navigateur. Elle n'est envoyée nulle part.</li>
       <li><b>Un carré noir plein.</b> Peint sur l'image avant qu'elle soit réenregistrée : le visage n'est ni flouté ni caché, il n'est plus dans le fichier.</li>
@@ -32,20 +291,24 @@
     <h2>Sans rien installer</h2>
     <div class="proof">
       <span class="n">1</span>
-      <h3>Le mode avion</h3>
-      <p>Ouvre vesky.fr, attends le chargement, puis passe en mode avion. Masque une vidéo, enregistre-la : tout marche sans réseau. Rien ne peut donc partir.</p>
+      <div>
+        <h3>Le mode avion</h3>
+        <p>Ouvre vesky.fr, attends le chargement, puis passe en mode avion. Masque une vidéo, enregistre-la : tout marche sans réseau. Rien ne peut donc partir.</p>
+      </div>
     </div>
     <div class="proof">
       <span class="n">2</span>
-      <h3>Le résultat</h3>
-      <p>Avant de publier, regarde la vidéo masquée en entier, image par image là où il y a du monde.</p>
+      <div>
+        <h3>Le résultat</h3>
+        <p>Avant de publier, regarde la vidéo masquée en entier, image par image là où il y a du monde.</p>
+      </div>
     </div>
   </section>
 
   <section>
     <h2>Si tu sais coder</h2>
     <ul class="facts">
-      <li><b>Code public.</b> Sous licence libre : <a href="https://github.com/Nctrn17/vesky">github.com/Nctrn17/vesky</a>. Le site sert le même fichier, lisible, sans rien de caché.</li>
+      <li><b>Code public.</b> Sous licence libre : <a href="https://github.com/Nctrn17/vesky" target="_blank" rel="noopener">github.com/Nctrn17/vesky</a>. Le site sert le même fichier, lisible, sans rien de caché.</li>
       <li><b>Aucune trace du visage.</b> <code>test/test-sans-trace.mjs</code> prend deux vidéos identiques sauf les visages, leur pose les mêmes masques : les fichiers produits sont identiques octet pour octet. Aucun filigrane ne peut permettre de retrouver le visage.</li>
       <li><b>Aucun envoi.</b> La page interdit au navigateur de se connecter à un autre site que vesky.fr. L'app Android n'a même pas la permission d'utiliser Internet.</li>
       <li><b>Bibliothèques d'origine.</b> ONNX Runtime et Mediabunny : <code>test/verifier-tiers.sh</code> vérifie qu'ils sont identiques aux versions officielles. Le modèle de détection est YuNet, réentraîné pour mieux voir la nuit : sa recette est publique.</li>
@@ -53,12 +316,6 @@
   </section>
 
   <section class="limits">
-    <h2>Ce que vesky ne fait pas</h2>
-    <p>Aucun outil ne trouve tous les visages : un profil, un visage caché en partie ou très petit peut être raté. Touche l'image pour ajouter un masque à la main.</p>
-    <p>Le carré cache le visage, pas les vêtements, les tatouages, la démarche, le lieu ni la voix. Le son est gardé par défaut : coupe-le avec le bouton « Son ».</p>
-  </section>
-
-  <a class="cta" href="./">Masquer une vidéo<span>→</span></a>
-</main>
-</body>
-</html>
+    <h2>Ce que skred fuck skyrock ne fait pas</h2>
+    <p style="margin-bottom: 8px;">Aucun outil ne trouve tous les visages : un profil, un visage caché en partie ou très petit peut être raté. Touche l'image pour ajouter un masque à la main.</p>
+    <p>Le carré cache le visage, pas les vêtements, les tatouages, la démarche, le lieu ni la voix.
